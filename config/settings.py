@@ -41,8 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    "rest_framework",
+    "drf_spectacular",
+    "django_filters",
+    "corsheaders"
 ]
 
+
+# MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,6 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# TEMPLATES     
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -118,6 +127,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+# STATICS AND MEDIA FILES   
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
@@ -129,3 +139,51 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# DJANGO REST FRAMEWORK 
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
+
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+
+    "PAGE_SIZE": 10,
+}
+
+# SWAGGER
+SPECTACULAR_SETTINGS = {
+    "TITLE": "ERP Pro API",
+    "DESCRIPTION": "Enterprise Resource Planning System API",
+    "VERSION": "1.0.0",
+}
+
+
+# PROJECT SETTINGS 
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+LANGUAGE_CODE = "en-us"
+
+TIME_ZONE = "Asia/Kathmandu"
+
+USE_I18N = True
+
+USE_TZ = True
+
+
+PROJECT_NAME = "ERP Pro"
+
+COMPANY_NAME = "ERP Solutions"
+
+DEFAULT_PAGE_SIZE = 10
