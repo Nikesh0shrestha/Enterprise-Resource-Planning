@@ -9,7 +9,7 @@ class CompanyAdmin(admin.ModelAdmin):
         "name",
         "email",
         "phone",
-        "creaated_at",
+        "created_at",
     )
 
     search_fields = (
