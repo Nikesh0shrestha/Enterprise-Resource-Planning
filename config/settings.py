@@ -53,6 +53,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.core',
+    'apps.accounts',
 
 ]
 
@@ -198,3 +199,6 @@ PROJECT_NAME = "ERP Pro"
 COMPANY_NAME = "ERP Solutions"
 
 DEFAULT_PAGE_SIZE = 10
+
+
+AUTH_USER_MODEL = "accounts.User"
