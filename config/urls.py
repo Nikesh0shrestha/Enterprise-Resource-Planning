@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from drf_spectacular.views import ( SpectacularAPIView,  SpectacularSwaggerView, )
+from drf_spectacular.views import ( SpectacularAPIView,  SpectacularSwaggerView, SpectacularRedocView,)
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -33,7 +33,12 @@ urlpatterns = [
     # API V1
     # path("api/v1/",include([])),
 
-    path("api/v1/", include("apps.api.urls"))
+    path("api/v1/", include("apps.accounts.urls")),
+    # path("api/v1/",include("apps.core.urls")),
+
+    # redoc
+
+    path("api/redoc/",SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 
 
 ]

@@ -49,6 +49,7 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "corsheaders",
     'django_extensions',
+    "rest_framework_simplejwt.token_blacklist",
 ]
 
 LOCAL_APPS = [
@@ -156,7 +157,8 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
 
     "DEFAULT_PERMISSION_CLASSES": [
@@ -202,3 +204,15 @@ DEFAULT_PAGE_SIZE = 10
 
 
 AUTH_USER_MODEL = "accounts.User"
+
+
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),    # access token expies in 30 min
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),   # refresh token expires in 7 days 
+    "ROTATE_REFRESH_TOKENS": True,                  # refresh the token 
+    "BLACKLIST_AFTER_ROTATION": True,                  # blacklist the previous token 
+    "UPDATE_LAST_LOGIN": True,
+}
